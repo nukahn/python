@@ -63,5 +63,3 @@ while j < 15:
 
 print(i)
 
-#time.sleep(1)
-
