@@ -59,7 +59,7 @@ while j < 15:
         
         print (str(now) + ": "+str(j)+"번째 시도. 새로운 글이 "+ str(len(post_list))+ "개 등록되었습니다. 최신 글번호는"+str(last_num)+"입니다.")
     
-    time.sleep(360)
-
+    time.sleep(30)
+## push 시험 주석
 print(i)
 
