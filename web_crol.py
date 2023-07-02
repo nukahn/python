@@ -61,5 +61,8 @@ while j < 15:
     
     time.sleep(30)
 ## push 시험 주석
+"""
+커밋 테스트 
+"""
 print(i)
 
