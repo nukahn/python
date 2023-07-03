@@ -1,17 +1,23 @@
+import sys
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 import time
 from bs4 import BeautifulSoup
 import datetime
- 
+## from gmail_send import send_mail
+from gmail_send import send_mail
+for i in sys.path:
+    print(i)
+
+
 browser = webdriver.Chrome()
 browser.get('https://cafe.naver.com/joonggonara')
 
 time.sleep(3)
 last_num = 0
 j = 0
-while j < 15:
+while j < 10:
     j += 1
 
     browser.switch_to.default_content()
@@ -43,10 +49,11 @@ while j < 15:
 
 
     if last_num == 0:
+        send_mail(last_num)
         last_num = post_list[0]['pnum']
         now = datetime.datetime.now()
         print("모니터링을 시작합니다.")
-        print (str(now) + ": "+str(j)+"번째 시도. 최신 글번호는"+str(last_num)+"입니다.")
+        print (str(now) + ": "+str(j)+"번째 시도. 최종 글번호는"+str(last_num)+"입니다.")
     else:
         for i in range(0, len(post_list)):
             if(post_list[i]['pnum'] <= last_num):
@@ -55,14 +62,10 @@ while j < 15:
 
         if(len(post_list) != 0):
             last_num = post_list[0]['pnum']
-
-        
+            send_mail(len(post_list))
         print (str(now) + ": "+str(j)+"번째 시도. 새로운 글이 "+ str(len(post_list))+ "개 등록되었습니다. 최신 글번호는"+str(last_num)+"입니다.")
-    
-    time.sleep(30)
-## push 시험 주석
-"""
-커밋 테스트 
-"""
-print(i)
+            
+    time.sleep(1800)
+
+
 
